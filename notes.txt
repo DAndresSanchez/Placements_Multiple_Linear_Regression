@@ -10,3 +10,8 @@ https://towardsdatascience.com/a-beginners-guide-to-linear-regression-in-python-
 
 Outliers:
 https://kite.com/python/answers/how-to-remove-outliers-from-a-pandas-dataframe-in-python
+
+https://towardsdatascience.com/scale-standardize-or-normalize-with-scikit-learn-6ccc7d176a02
+
+Regularisation:
+https://towardsdatascience.com/feature-selection-using-regularisation-a3678b71e499

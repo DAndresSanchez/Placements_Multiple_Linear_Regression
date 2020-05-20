@@ -163,7 +163,30 @@ lasso_coef = lasso.fit(X, y).coef_
 _ = plt.plot(range(len(names)), lasso_coef)
 _ = plt.xticks(range(len(names)), names, rotation=90)
 _ = plt.ylabel('Coefficients')
+_ = plt.grid(linestyle='-', linewidth=0.5)
 plt.show()
+
+
+comparison = pd.DataFrame({'Feature': names, 'Lasso Coefficient': lasso_coef})
+comparison.plot(kind='bar',figsize=(10,8))
+plt.title('Lasso for feature selection')
+plt.xlabel('Feature')
+plt.ylabel('Coefficients')
+plt.xticks(range(len(names)), names, rotation=90)
+plt.grid(linestyle='-', linewidth=0.5)
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
