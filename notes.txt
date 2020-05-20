@@ -7,3 +7,6 @@ Notes:
    
 Good website:
 https://towardsdatascience.com/a-beginners-guide-to-linear-regression-in-python-with-scikit-learn-83a8f7ae2b4f
+
+Outliers:
+https://kite.com/python/answers/how-to-remove-outliers-from-a-pandas-dataframe-in-python
