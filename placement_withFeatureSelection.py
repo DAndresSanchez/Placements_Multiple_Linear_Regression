@@ -180,6 +180,11 @@ plt.show()
 
 
 
+https://towardsdatascience.com/feature-selection-using-regularisation-a3678b71e499
+
+X_red = X.drop(columns=['ssc_p', 'hsc_p', 'degree_p', 'etest_p', 'mba_p', 'salary',
+                        'workex_Yes', 'specialisation_Mkt&HR'])
+
 
 
 
