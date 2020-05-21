@@ -179,15 +179,26 @@ plt.show()
 
 
 
-
-https://towardsdatascience.com/feature-selection-using-regularisation-a3678b71e499
-
-X_red = X.drop(columns=['ssc_p', 'hsc_p', 'degree_p', 'etest_p', 'mba_p', 'salary',
-                        'workex_Yes', 'specialisation_Mkt&HR'])
-
-
-
-
+#
+#https://towardsdatascience.com/feature-selection-using-regularisation-a3678b71e499
+#
+#X_red = X.drop(columns=['ssc_p', 'hsc_p', 'degree_p', 'etest_p', 'mba_p', 'salary',
+#                        'workex_Yes', 'specialisation_Mkt&HR'])
+#
+#
+#
+#sel_ = SelectFromModel(LogisticRegression(C=1, penalty='l1'))
+#sel_.fit(scaler.transform(X_train.fillna(0)), y_train)
+#
+#sel_.get_support()
+#
+#selected_feat = X_train.columns[(sel_.get_support())]
+#print('total features: {}'.format((X_train.shape[1])))
+#print('selected features: {}'.format(len(selected_feat)))
+#print('features with coefficients shrank to zero: {}'.format(
+#      np.sum(sel_.estimator_.coef_ == 0)))
+#
+#np.sum(sel_.estimator_.coef_ == 0)
 
 
 
