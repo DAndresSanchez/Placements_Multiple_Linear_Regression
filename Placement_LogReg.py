@@ -2,7 +2,7 @@
 """
 Created on Fri May 22 12:19:15 2020
 
-@author: user
+@author: David Andres
 """
 
 
@@ -20,6 +20,7 @@ from sklearn.pipeline import Pipeline
 from scipy import stats
 from sklearn.model_selection import cross_val_score
 from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import GridSearchCV
 
 #%% Import data
 
@@ -53,12 +54,6 @@ data.reset_index(inplace=True, drop = True)
 # get dummy variables for categorical data
 data = pd.get_dummies(data, drop_first=True)
 
-## remove outliers
-#z_scores = stats.zscore(data)
-#abs_z_scores = np.abs(z_scores)
-#filtered_entries = (abs_z_scores < 5).all(axis=1)
-#data = data[filtered_entries]
-
 # split of data into train and test
 X = data.drop(columns=['status_Placed'])
 y = data.status_Placed
@@ -73,7 +68,7 @@ y_pred = logreg.predict(X_test)
 # evaluation of the model
 print('Accuracy: {}%'.format(round((y_test == y_pred).sum()/len(y_test)*100,2)))
 
-
+# plot ROC curve
 y_pred_prob = logreg.predict_proba(X_test)[:,1]
 fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob)
 plt.plot([0, 1], [0, 1], 'k--')
@@ -81,9 +76,37 @@ plt.plot(fpr, tpr, label='Logistic Regression')
 plt.xlabel('False Positive Rate')
 plt.ylabel('True Positive Rate')
 plt.title('Logistic Regression ROC Curve')
-plt.show();
+plt.show()
 
+# get ROC_AUC score
 roc_auc_score(y_test, y_pred_prob)
+
+# cross validation
+cv_scores = cross_val_score(logreg, X, y, cv=5, scoring='roc_auc')
+print(cv_scores)
+
+
+#%% Hyperparameter tuning
+
+dual=[True,False]
+max_iter=[100,110,120,130,140]
+param_grid = dict(dual=dual,max_iter=max_iter)
+
+# use GridSearchCV with LogisticRegression and the chosen hyperparameters
+logreg = LogisticRegression()
+logreg_cv = GridSearchCV(logreg, param_grid, cv=5)
+logreg_cv.fit(X, y)
+
+# summary of results
+print("Best: %f using %s" % (logreg_cv.best_score_, logreg_cv.best_params_))
+
+
+
+
+
+
+
+
 
 
 
