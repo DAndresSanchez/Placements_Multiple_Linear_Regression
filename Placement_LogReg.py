@@ -19,7 +19,7 @@ from sklearn.preprocessing import StandardScaler, MinMaxScaler
 from sklearn.pipeline import Pipeline
 from scipy import stats
 from sklearn.model_selection import cross_val_score
-from sklearn.linear_model import LogisticRegression
+from sklearn.linear_model import LogisticRegression, 
 from sklearn.model_selection import GridSearchCV
 
 #%% Import data
@@ -86,8 +86,8 @@ cv_scores = cross_val_score(logreg, X, y, cv=5, scoring='roc_auc')
 print(cv_scores)
 
 
-#%% Hyperparameter tuning
-
+#%% Hyperparameter tuning for Logistic Regression
+ 
 dual=[True,False]
 max_iter=[100,110,120,130,140]
 param_grid = dict(dual=dual,max_iter=max_iter)
@@ -102,11 +102,46 @@ print("Best: %f using %s" % (logreg_cv.best_score_, logreg_cv.best_params_))
 
 
 
+#%% Hyperparameter tuning for K-Neighbors Classifier
+
+n_neigh=range(2,10,2)
+param_grid = dict(n_neighbors=n_neigh)
+
+# use GridSearchCV with KNeightbors and the chosen hyperparameters
+knn = KNeighborsClassifier()
+knn_cv = GridSearchCV(knn, param_grid, cv=5)
+knn_cv.fit(X, y)
+
+# summary of results
+print("Best: %f using %s" % (knn_cv.best_score_, knn_cv.best_params_))
 
 
+#%% K-Neighbors Classifier
 
+from sklearn.neighbors import KNeighborsClassifier
 
+knn = KNeighborsClassifier(n_neighbors=8)
+knn.fit(X_train, y_train)
+y_pred = knn.predict(X_test)
 
+# evaluation of the model
+print('Accuracy: {}%'.format(round((y_test == y_pred).sum()/len(y_test)*100,2)))
 
+# plot ROC curve
+y_pred_prob = knn.predict_proba(X_test)[:,1]
+fpr, tpr, thresholds = roc_curve(y_test, y_pred_prob)
+plt.plot([0, 1], [0, 1], 'k--')
+plt.plot(fpr, tpr, label='Logistic Regression')
+plt.xlabel('False Positive Rate')
+plt.ylabel('True Positive Rate')
+plt.title('Logistic Regression ROC Curve')
+plt.show()
+
+# get ROC_AUC score
+roc_auc_score(y_test, y_pred_prob)
+
+# cross validation
+cv_scores = cross_val_score(logreg, X, y, cv=5, scoring='roc_auc')
+print(cv_scores)
 
 
