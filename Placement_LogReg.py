@@ -4,9 +4,8 @@ Created on Fri May 22 12:19:15 2020
 
 @author: David Andres
 """
-#Marcos es guapo
 
-#%% Libraries
+## Libraries
 
 import pandas as pd  
 import numpy as np  
@@ -25,7 +24,7 @@ from sklearn.preprocessing import scale
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.neighbors import KNeighborsClassifier
 
-#%% Import data
+## Import data
 
 # import data from csv file
 filename = r"C:\Users\user\Documents\Google Drive\Business\Python\Job_MultRegression\Placement_Data_Full_Class.csv"
@@ -39,7 +38,7 @@ print(df.describe())
 print(df.isna().sum())
 
 
-#%% Data cleaning and preprocessing
+## Data cleaning and preprocessing
 
 # drop secondary education and non-relevant information
 data = df.drop(columns=['sl_no', 'ssc_b', 'hsc_b', 'hsc_s', 'salary'])
@@ -63,7 +62,7 @@ X = scale(X)
 y = data.status_Placed
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=0)
 
-#%%  Logistic Regression model
+## Logistic Regression model
 
 logreg = LogisticRegression()
 logreg.fit(X_train, y_train)
@@ -90,7 +89,7 @@ cv_scores = cross_val_score(logreg, X, y, cv=5, scoring='roc_auc')
 print(cv_scores)
 
 
-#%% Hyperparameter tuning for Logistic Regression
+## Hyperparameter tuning for Logistic Regression
  
 dual=[True,False]
 max_iter=[100,110,120,130,140]
@@ -106,7 +105,7 @@ print("Best: %f using %s" % (logreg_cv.best_score_, logreg_cv.best_params_))
 
 
 
-#%% Hyperparameter tuning for K-Neighbors Classifier
+## Hyperparameter tuning for K-Neighbors Classifier
 
 
 n_neigh=range(2,10,2)
@@ -121,7 +120,7 @@ knn_cv.fit(X, y)
 print("Best: %f using %s" % (knn_cv.best_score_, knn_cv.best_params_))
 
 
-#%% K-Neighbors Classifier
+## K-Neighbors Classifier
 
 knn = KNeighborsClassifier(n_neighbors=6)
 knn.fit(X_train, y_train)
@@ -149,7 +148,7 @@ print(cv_scores)
 
 
 
-#%% Hyperparameter tuning for Random Forests
+## Hyperparameter tuning for Random Forests
 
 n_estim=range(20,200,20)
 param_grid = dict(n_estimators=n_estim)
@@ -163,7 +162,7 @@ clf_cv.fit(X, y)
 print("Best: %f using %s" % (clf_cv.best_score_, clf_cv.best_params_))
 
 
-#%% Random Forests Classifier
+## Random Forests Classifier
 
 clf=RandomForestClassifier(n_estimators=60)
 clf.fit(X_train, y_train)
