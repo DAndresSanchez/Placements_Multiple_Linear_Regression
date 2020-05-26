@@ -42,7 +42,7 @@ ROC curves for:
 
 - Logistic Regression
 
-![Logistic Regression](.\images\ROC_LogReg.png)
+![Logistic Regression](images\ROC_LogReg.png)
 
 - K-Nearest Neighbors
 
