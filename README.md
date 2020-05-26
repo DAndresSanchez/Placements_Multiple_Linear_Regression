@@ -27,11 +27,11 @@ https://www.kaggle.com/benroshan/factors-affecting-campus-placement
 
 - Salary prediction vs. Actual salary
 
-![Salary comparison](.\images\salary_prediction.png)
+![Salary comparison](https://github.com/DAndresSanchez/Placements_MultipleLinearRegression/blob/master/images/salary_prediction.png)
 
 - Feature selection with Lasso
 
-![Feature selection](.\images\feature_selection.png)
+![Feature selection](https://github.com/DAndresSanchez/Placements_MultipleLinearRegression/blob/master/images/feature_selection.png)
 
 
 
@@ -42,12 +42,12 @@ ROC curves for:
 
 - Logistic Regression
 
-![Logistic Regression](images\ROC_LogReg.png)
+![Logistic Regression](https://github.com/DAndresSanchez/Placements_MultipleLinearRegression/blob/master/images/ROC_LogReg.png)
 
 - K-Nearest Neighbors
 
-![KNNeighbors](.\images\ROC_knn.png)
+![KNNeighbors](https://github.com/DAndresSanchez/Placements_MultipleLinearRegression/blob/master/images/ROC_knn.png)
 
 - Random Forests
 
-![Random Forests](.\images\ROC_RandomForests.png)
+![Random Forests](https://github.com/DAndresSanchez/Placements_MultipleLinearRegression/blob/master/images/ROC_RandomForests.png)
